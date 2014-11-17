@@ -2,6 +2,7 @@
 #include "../../object/character/player/Player.hpp"
 #include "../../object/character/holyghost/HolyGhost.hpp"
 #include "../../object/item/sweet_potato/SweetPotato.hpp"
+#include "../../object/character/enemy/Enemy.hpp"
 #include <algorithm>
 
 CStage::CStage(std::shared_ptr<AppEnv>app_env, std::shared_ptr<CSceneManager>scene_manager) :
@@ -38,7 +39,9 @@ m_time(30)
 
 	m_obj_list.emplace_back(std::make_shared<CPlayer>(app_env,m_is_control));
 	m_obj_list.emplace_back(std::make_shared<CHolyGhost>(app_env,m_time));
+	m_obj_list.emplace_back(std::make_shared<CEnemy>(app_env, m_obj_list));
 	m_obj_list.emplace_back(std::make_shared<CSweetPotato>(app_env,m_obj_list[0]));
+
 	std::dynamic_pointer_cast<CHolyGhost>(m_obj_list[1])->Start(m_obj_list);
 	m_res.m_stage_sound->looping(true);
 }
@@ -61,7 +64,6 @@ void CStage::Start(){
 
 //Å@çXêV
 void CStage::Update(){
-
 	Ready();
 	Finish();
 	UpdateOfAfterReady();
@@ -310,7 +312,7 @@ void CStage::RemoveObject(){
 				break;
 			case Object::Type::HolyGhost:
 				m_obj_list.emplace_back(std::make_shared<CHolyGhost>(m_app_env, m_time));
-				std::dynamic_pointer_cast<CHolyGhost>(m_obj_list[2])->Start(m_obj_list);
+				std::dynamic_pointer_cast<CHolyGhost>(m_obj_list[3])->Start(m_obj_list);
 				break;
 			}
 		}

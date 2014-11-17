@@ -19,6 +19,8 @@ public:
 	const std::unique_ptr<Texture>m_player_graph;
 	const std::unique_ptr<Texture>m_holyghost_graph;
 	const std::unique_ptr<Texture>m_sweetpotato_graph;
+	const std::unique_ptr<Texture>m_enemy_graph;
+	const std::unique_ptr<Texture>m_enemy_death_graph;
 
 
 	//Å@âπäy

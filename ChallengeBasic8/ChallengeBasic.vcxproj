@@ -88,6 +88,7 @@
   <ItemGroup>
     <ClCompile Include="src\gameapplication\GameApplication.cpp" />
     <ClCompile Include="src\gameapplication\object\character\Character.cpp" />
+    <ClCompile Include="src\gameapplication\object\character\enemy\Enemy.cpp" />
     <ClCompile Include="src\gameapplication\object\character\holyghost\HolyGhost.cpp" />
     <ClCompile Include="src\gameapplication\object\character\player\Player.cpp" />
     <ClCompile Include="src\gameapplication\object\item\Implant.cpp" />
@@ -123,6 +124,7 @@
   <ItemGroup>
     <ClInclude Include="src\gameapplication\GameApplication.hpp" />
     <ClInclude Include="src\gameapplication\object\character\Character.hpp" />
+    <ClInclude Include="src\gameapplication\object\character\enemy\Enemy.hpp" />
     <ClInclude Include="src\gameapplication\object\character\holyghost\HolyGhost.hpp" />
     <ClInclude Include="src\gameapplication\object\character\player\Player.hpp" />
     <ClInclude Include="src\gameapplication\object\item\Implant.hpp" />

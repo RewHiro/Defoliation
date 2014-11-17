@@ -55,6 +55,9 @@
     <Filter Include="gameapplication\object\item\sweetpotato">
       <UniqueIdentifier>{30f144fc-99c1-4474-84a1-b70ca238b2b1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="gameapplication\object\character\enemy">
+      <UniqueIdentifier>{93662064-5a6b-4f2f-afae-f24de645308b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
@@ -153,6 +156,9 @@
     </ClCompile>
     <ClCompile Include="src\gameapplication\object\item\Implant.cpp">
       <Filter>gameapplication\object\item</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameapplication\object\character\enemy\Enemy.cpp">
+      <Filter>gameapplication\object\character\enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -269,6 +275,9 @@
     </ClInclude>
     <ClInclude Include="src\gameapplication\object\item\Implant.hpp">
       <Filter>gameapplication\object\item</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameapplication\object\character\enemy\Enemy.hpp">
+      <Filter>gameapplication\object\character\enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
