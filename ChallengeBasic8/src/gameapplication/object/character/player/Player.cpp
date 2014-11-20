@@ -2,9 +2,8 @@
 #include "../../item/sweet_potato/SweetPotato.hpp"
 #include "../holyghost/HolyGhost.hpp"
 
-CPlayer::CPlayer(std::shared_ptr<AppEnv>app_env,bool& is_contorol) :
+CPlayer::CPlayer(std::shared_ptr<AppEnv>app_env) :
 CCharacter(app_env),
-m_is_control(is_contorol),
 m_score(0),
 m_combo_num(-1)
 {
@@ -78,6 +77,5 @@ void CPlayer::UpdateOfObject(std::vector<std::shared_ptr<Object>>obj_list){
 
 //@‘€ì
 void CPlayer::Control(){
-	if (!m_is_control)return;
 	m_pos = m_app_env->mousePosition();
 }

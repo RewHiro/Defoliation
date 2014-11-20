@@ -1,4 +1,4 @@
-﻿2014/11/16 2:28:14 にビルドを開始しました。
+﻿2014/11/20 13:32:39 にビルドを開始しました。
      1>ノード 2 上のプロジェクト "C:\Users\vantan\Desktop\Defoliation\ChallengeBasic8\ChallengeBasic.vcxproj" (Build ターゲット)。
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D DEBUG /D _ITERATOR_DEBUG_LEVEL=0 /D PRODUCT_NAME=ChallengeBasic /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt src\gameapplication\scene\stage\Stage.cpp
@@ -15,6 +15,7 @@
          Debug\Ranking.obj
          Debug\Result.obj
          Debug\Rule.obj
+         Debug\SceneFactory.obj
          Debug\SceneManager.obj
          Debug\Stage.obj
          Debug\Title.obj
@@ -43,4 +44,4 @@
 
 ビルドに成功しました。
 
-経過時間 00:00:02.61
+経過時間 00:00:02.00

@@ -4,13 +4,10 @@
 
 class CResult : public CScene{
 public:
-	CResult(std::shared_ptr<AppEnv>app_env, std::shared_ptr<CSceneManager>scene_manager);
-
-	//　最初の処理
-	void Start();
+	CResult(std::shared_ptr<AppEnv>app_env);
 
 	//　更新
-	void Update();
+	Type Update();
 
 	//　描画
 	void Draw();

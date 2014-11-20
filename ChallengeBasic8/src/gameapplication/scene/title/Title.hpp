@@ -12,13 +12,10 @@
 //========================================
 class CTitle : public CScene{
 public:
-	CTitle(std::shared_ptr<AppEnv>app_env, std::shared_ptr<CSceneManager>scene_manager);
-
-	//　最初の処理
-	void Start();
+	CTitle(std::shared_ptr<AppEnv>app_env);
 
 	//　更新
-	void Update();
+	Type Update();
 
 	//　描画
 	void Draw();
@@ -49,7 +46,7 @@ private:
 	std::array<std::unique_ptr<StringData>, 3>m_title_select_str;			//　選択項目の文字のデータ
 	std::unique_ptr<Font>m_title_str;										//　タイトル文字のデータ
 	Scene m_now_select;														//　現在選んでいる選択項目
-	std::unordered_map<Scene, CSceneManager::Scene>m_transition_list;		//　遷移できるシーンリスト
+	std::unordered_map<Scene, Type>m_transition_list;		//　遷移できるシーンリスト
 	CResource &m_res;														//　リソース
 	std::map<Scene, std::function<void()>>m_select_effect_list;					//　選択項目によるエフェクトリスト
 

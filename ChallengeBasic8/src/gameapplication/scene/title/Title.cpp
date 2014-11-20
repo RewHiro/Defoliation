@@ -2,27 +2,25 @@
 #include "../../../lib/graph.hpp"
 
 
-CTitle::CTitle(std::shared_ptr<AppEnv>app_env, std::shared_ptr<CSceneManager>scene_manager) :
-CScene(app_env,scene_manager),
+CTitle::CTitle(std::shared_ptr<AppEnv>app_env) :
+CScene(app_env),
 STR_SELECT_HEIGHT(-150),
 m_now_select(Scene::STAGE),
 m_res(CResource::GetInstance())
 {
+	m_change_scene = Type::TITLE;
 	StringInit();
 	AddTransitionList();
 	AddSelectEffectList();
 	m_res.m_title_sound->looping(true);
-
-}
-
-void CTitle::Start(){
 	m_res.m_title_sound->play();
 }
 
 //　更新
-void CTitle::Update(){
+CScene::Type CTitle::Update(){
 	Control();
 	RotationEffect();
+	return m_change_scene;
 }
 
 //　描画
@@ -37,10 +35,8 @@ void CTitle::Draw(){
 
 //　操作
 void CTitle::Control(){
-	if (!m_is_control)return;
 	if (m_app_env->isPushKey(GLFW_KEY_ENTER)){
-		auto it = m_transition_list.find(m_now_select)->second;
-		m_scene_manager.lock()->TransformOfScene(it);
+		m_change_scene = m_transition_list.find(m_now_select)->second;
 		m_res.m_title_button_sound[1]->play();
 		m_res.m_title_sound->stop();
 
@@ -74,9 +70,9 @@ void CTitle::RotationEffect(){
 
 //　遷移リストの追加
 void CTitle::AddTransitionList(){
-	m_transition_list.emplace(Scene::STAGE,CSceneManager::Scene::STAGE);
-	m_transition_list.emplace(Scene::RULE, CSceneManager::Scene::RULE);
-	m_transition_list.emplace(Scene::RANKING, CSceneManager::Scene::RANKING);
+	m_transition_list.emplace(Scene::STAGE,Type::STAGE);
+	m_transition_list.emplace(Scene::RULE, Type::RULE);
+	m_transition_list.emplace(Scene::RANKING, Type::RANKING);
 }
 
 

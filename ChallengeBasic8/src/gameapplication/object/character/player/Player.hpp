@@ -4,7 +4,7 @@
 class CPlayer : public CCharacter
 {
 public:
-	CPlayer(std::shared_ptr<AppEnv>app_env,bool& is_contorol);
+	CPlayer(std::shared_ptr<AppEnv>app_env);
 
 	//　最初の処理
 	void Start(std::vector<std::shared_ptr<Object>>obj_list);
@@ -28,7 +28,6 @@ public:
 	int GetCombo(){ return m_combo_num; }
 
 private:
-	bool& m_is_control;													//　操作できるか
 	int m_score;														//　スコア
 	int m_combo_num;													//　コンボ
 

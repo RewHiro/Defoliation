@@ -1,19 +1,18 @@
 #include "Result.hpp"
 
 
-CResult::CResult(std::shared_ptr<AppEnv>app_env, std::shared_ptr<CSceneManager>scene_manager):
-CScene(app_env, scene_manager),
+CResult::CResult(std::shared_ptr<AppEnv>app_env):
+CScene(app_env),
 m_font(std::make_unique<Font>(60))
 {
+	m_change_scene = Type::RESULT;
 }
 
-//　最初の処理
-void CResult::Start(){
-}
 
 //　更新
-void CResult::Update(){
+CScene::Type CResult::Update(){
 	Control();
+	return m_change_scene;
 }
 
 //　描画
@@ -23,8 +22,7 @@ void CResult::Draw(){
 
 //　操作
 void CResult::Control(){
-	if (!m_is_control)return;
 	if (m_app_env->isPushKey(GLFW_KEY_ENTER)){
-		m_scene_manager.lock()->TransformOfScene(CSceneManager::Scene::TITLE);
+		m_change_scene = Type::TITLE;
 	}
 }

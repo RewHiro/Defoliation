@@ -11,19 +11,18 @@
 class CGameApplication : private Uncopyable{
 public:
 
-	static CGameApplication& GetInstance(){
-		static CGameApplication instance;
-		return instance;
-	}
+	CGameApplication();
 
-	std::shared_ptr<AppEnv>m_app_env;
 
 	//　更新
 	void Update();
 private:
-	CGameApplication();
-	std::shared_ptr<CSceneManager>m_scene_manager;
-	//　リソースの読み込み
-	CResource& m_res;
+
+	std::shared_ptr<AppEnv>m_app_env;								//　アプリイベント
+	std::unique_ptr<CSceneManager>m_scene_manager;					//　シーンマネージャー
+	CResource& m_res;												//　リソース
+
+	//　起動条件
+	bool LaunchCondition();
 };
 

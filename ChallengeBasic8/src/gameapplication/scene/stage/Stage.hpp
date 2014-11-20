@@ -11,12 +11,10 @@ class Object;
 //========================================
 class CStage : public CScene{
 public:
-	CStage(std::shared_ptr<AppEnv>app_env, std::shared_ptr<CSceneManager>scene_manager);
-
-	void Start();
+	CStage(std::shared_ptr<AppEnv>app_env);
 
 	//　更新
-	void Update();
+	Type Update();
 
 	//　描画
 	void Draw();

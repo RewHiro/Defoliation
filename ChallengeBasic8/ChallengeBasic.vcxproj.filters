@@ -160,6 +160,9 @@
     <ClCompile Include="src\gameapplication\object\character\enemy\Enemy.cpp">
       <Filter>gameapplication\object\character\enemy</Filter>
     </ClCompile>
+    <ClCompile Include="src\gameapplication\scene\SceneFactory.cpp">
+      <Filter>gameapplication\scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\lib\appEnv.hpp">
@@ -278,6 +281,12 @@
     </ClInclude>
     <ClInclude Include="src\gameapplication\object\character\enemy\Enemy.hpp">
       <Filter>gameapplication\object\character\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameapplication\scene\Scene.h">
+      <Filter>gameapplication\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameapplication\scene\SceneFactory.h">
+      <Filter>gameapplication\scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

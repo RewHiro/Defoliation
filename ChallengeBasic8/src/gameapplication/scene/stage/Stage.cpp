@@ -5,8 +5,8 @@
 #include "../../object/character/enemy/Enemy.hpp"
 #include <algorithm>
 
-CStage::CStage(std::shared_ptr<AppEnv>app_env, std::shared_ptr<CSceneManager>scene_manager) :
-CScene(app_env, scene_manager),
+CStage::CStage(std::shared_ptr<AppEnv>app_env) :
+CScene(app_env),
 ReadyCenterPosX(-80),
 isRemove(false),
 isReady(true),
@@ -37,33 +37,26 @@ m_time(30)
 
 
 
-	m_obj_list.emplace_back(std::make_shared<CPlayer>(app_env,m_is_control));
+	m_obj_list.emplace_back(std::make_shared<CPlayer>(app_env));
 	m_obj_list.emplace_back(std::make_shared<CHolyGhost>(app_env,m_time));
 	m_obj_list.emplace_back(std::make_shared<CEnemy>(app_env, m_obj_list));
 	m_obj_list.emplace_back(std::make_shared<CSweetPotato>(app_env,m_obj_list[0]));
 
 	std::dynamic_pointer_cast<CHolyGhost>(m_obj_list[1])->Start(m_obj_list);
 	m_res.m_stage_sound->looping(true);
-}
-
-void CStage::Start(){
-
 	m_res.m_stage_sound->play();
-	m_count = 0;
-	m_stage_num = 1;
-	isReady = true;
-	isRemove = false;
-	isFinish = false;
-	m_time = std::chrono::seconds(30);
 	std::dynamic_pointer_cast<CPlayer>(m_obj_list[0])->Start(m_obj_list);
-	m_ready_count = 0;
-	m_ready_pos = Vec2f(CScene::WIDTH / 2, 0);
-	m_finish_pos = Vec2f(CScene::WIDTH / 2 + 150, 0);
-
+	m_change_scene = Type::STAGE;
+	m_time_digit[0] = 0;
+	m_time_digit[1] = 3;
+	m_time_digit[2] = 0;
+	for (auto& font : m_score_digit){
+		font = 0;
+	}
 }
 
 //　更新
-void CStage::Update(){
+CScene::Type CStage::Update(){
 	Ready();
 	Finish();
 	UpdateOfAfterReady();
@@ -71,6 +64,7 @@ void CStage::Update(){
 	StageNumUpdate();
 	TimeDigitUpdate();
 	RemoveObject();
+	return m_change_scene;
 }
 
 //　描画
@@ -95,9 +89,8 @@ void CStage::Draw(){
 
 //　操作
 void CStage::Control(){
-	if (!m_is_control)return;
 	if (m_app_env->isPushKey(GLFW_KEY_ENTER)){
-		m_scene_manager.lock()->TransformOfScene(CSceneManager::Scene::RESULT);
+		m_change_scene = Type::RESULT;
 		m_res.m_stage_sound->stop();
 
 	}
@@ -113,7 +106,6 @@ void CStage::TimeUpdate(){
 
 //　時間が減少する処理
 void CStage::AddCount(){
-	if (!m_is_control)return;
 	m_count++;
 	ToLoseTime();
 }
@@ -290,12 +282,12 @@ void CStage::MoveFinishStirng(){
 	m_finish_pos.x() -= 10;
 	if (m_finish_pos.x() < ReadyCenterPosX){
 		m_finish_pos.x() = ReadyCenterPosX;
-		m_scene_manager.lock()->TransformOfScene(CSceneManager::Scene::RESULT);
-		m_obj_list.clear();
-		m_obj_list.emplace_back(std::make_shared<CPlayer>(m_app_env, m_is_control));
-		m_obj_list.emplace_back(std::make_shared<CSweetPotato>(m_app_env, m_obj_list[0]));
-		m_obj_list.emplace_back(std::make_shared<CHolyGhost>(m_app_env, m_time));
-		std::dynamic_pointer_cast<CHolyGhost>(m_obj_list[2])->Start(m_obj_list);
+		m_change_scene = Type::RESULT;
+		//m_obj_list.clear();
+		//m_obj_list.emplace_back(std::make_shared<CPlayer>(m_app_env, m_is_control));
+		//m_obj_list.emplace_back(std::make_shared<CSweetPotato>(m_app_env, m_obj_list[0]));
+		//m_obj_list.emplace_back(std::make_shared<CHolyGhost>(m_app_env, m_time));
+		//std::dynamic_pointer_cast<CHolyGhost>(m_obj_list[2])->Start(m_obj_list);
 		isRemove = true;
 	}
 }

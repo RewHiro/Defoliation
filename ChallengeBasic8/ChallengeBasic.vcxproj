@@ -97,6 +97,7 @@
     <ClCompile Include="src\gameapplication\scene\ranking\Ranking.cpp" />
     <ClCompile Include="src\gameapplication\scene\result\Result.cpp" />
     <ClCompile Include="src\gameapplication\scene\rule\Rule.cpp" />
+    <ClCompile Include="src\gameapplication\scene\SceneFactory.cpp" />
     <ClCompile Include="src\gameapplication\scene\SceneManager.cpp" />
     <ClCompile Include="src\gameapplication\scene\stage\Stage.cpp" />
     <ClCompile Include="src\gameapplication\scene\title\Title.cpp" />
@@ -134,6 +135,8 @@
     <ClInclude Include="src\gameapplication\scene\ranking\Ranking.hpp" />
     <ClInclude Include="src\gameapplication\scene\result\Result.hpp" />
     <ClInclude Include="src\gameapplication\scene\rule\Rule.hpp" />
+    <ClInclude Include="src\gameapplication\scene\Scene.h" />
+    <ClInclude Include="src\gameapplication\scene\SceneFactory.h" />
     <ClInclude Include="src\gameapplication\scene\SceneManager.hpp" />
     <ClInclude Include="src\gameapplication\scene\stage\Stage.hpp" />
     <ClInclude Include="src\gameapplication\scene\title\Title.hpp" />

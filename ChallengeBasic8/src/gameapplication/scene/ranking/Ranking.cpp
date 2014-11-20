@@ -1,19 +1,17 @@
 #include "Ranking.hpp"
 
 
-CRanking::CRanking(std::shared_ptr<AppEnv>app_env, std::shared_ptr<CSceneManager>scene_manager) :
-CScene(app_env, scene_manager),
+CRanking::CRanking(std::shared_ptr<AppEnv>app_env) :
+CScene(app_env),
 m_font(std::make_unique<Font>(90))
 {
-}
-
-//　最初の処理
-void CRanking::Start(){
+	m_change_scene = Type::RANKING;
 }
 
 //　更新
-void CRanking::Update(){
+CScene::Type CRanking::Update(){
 	Control();
+	return m_change_scene;
 }
 
 //　描画
@@ -23,8 +21,7 @@ void CRanking::Draw(){
 
 //　操作
 void CRanking::Control(){
-	if (!m_is_control)return;
 	if (m_app_env->isPushKey(GLFW_KEY_ENTER)){
-		m_scene_manager.lock()->TransformOfScene(CSceneManager::Scene::TITLE);
+		m_change_scene = Type::TITLE;
 	}
 }
