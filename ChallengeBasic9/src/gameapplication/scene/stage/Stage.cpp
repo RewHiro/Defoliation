@@ -6,6 +6,7 @@
 #include "../../object/manager/EnemyManager.h"
 #include "../../object/manager/ImplantManager.h"
 #include "../../object/manager/ObstacleManager.h"
+#include "../../object/manager/ScoreManager.h"
 #include <fstream>
 
 int CStage::m_enemy_swipe_count = 0;
@@ -33,10 +34,11 @@ m_combo_num(0)
 	m_change_scene = Type::STAGE;
 	m_res.GetBGM(BGM::STAGE)->looping(true);
 	m_res.GetBGM(BGM::STAGE)->play();
-	m_obj_task.Regist(1, std::make_unique<CPlayerManager>(app_env));
-	m_obj_task.Regist(3, std::make_unique<CEnemyManager>());
-	m_obj_task.Regist(4, std::make_unique<CImplantManager>());
-	m_obj_task.Regist(2, std::make_unique<CObstacleManager>());
+	m_obj_task.Regist(2, std::make_unique<CPlayerManager>(app_env));
+	m_obj_task.Regist(4, std::make_unique<CEnemyManager>());
+	m_obj_task.Regist(5, std::make_unique<CImplantManager>());
+	m_obj_task.Regist(3, std::make_unique<CObstacleManager>());
+	m_obj_task.Regist(1, std::make_unique<CScoreManager>());
 	m_stage_num = 1;
 	for (auto &font : m_time_graph){
 		font = std::make_unique<Font>(60, L"ニコモジ");
@@ -54,6 +56,8 @@ m_combo_num(0)
 	m_ready_graph = std::make_unique<Font>(60, L"Pacifico");
 	m_finish_graph = std::make_unique<Font>(60, L"Pacifico");
 
+	m_font_des = std::make_unique<Font>(60);
+	
 	m_time_digit[0] = 0;
 	m_time_digit[1] = 3;
 	m_time_digit[2] = 0;
@@ -89,6 +93,9 @@ void CStage::Draw(){
 	ComboStringDraw();
 	ReadyStringDraw();
 	FinishStringDraw();
+	if (isDescription){
+		m_font_des->DrawCenter(L"タップしてアイテムをゲットしよう！", 0, 0, color256(102, 51, 255));
+	}
 }
 
 //　操作
@@ -218,7 +225,6 @@ void CStage::StageNumUpdate(){
 	//		m_stage_num++;
 	//	}
 	//}
-
 }
 
 //　コンボの文字描画
@@ -231,7 +237,6 @@ void CStage::ComboStringDraw(){
 	m_combo_num_graph->Draw(std::to_wstring(m_combo_num),
 		CScene::WIDTH / 2 - m_combo_graph->GetSize() * 4, CScene::HEIGHT / 2 - m_combo_graph->GetSize() * 2,
 		color256(102, 51, 255));
-
 }
 
 //　遷移処理
@@ -271,12 +276,14 @@ void CStage::ReadyStringDraw(){
 	m_ready_graph->Draw("Ready",
 		m_ready_pos.x(), m_ready_pos.y(),
 		color256(102, 51, 255));
+
 }
 
 //　レディーの移動処理
 void CStage::MoveReadyStirng(){
 	if (!(m_ready_count > 120 && 240 > m_ready_count))return;
 	m_ready_pos.x() -= 10;
+	isDescription = false;
 	if (m_ready_pos.x() < ReadyCenterPosX){
 		m_ready_pos.x() = ReadyCenterPosX;
 	}
@@ -332,7 +339,6 @@ void CStage::HitCountClear(){
 }
 
 void CStage::Combo(){
-
 	for (auto it = m_info.GetInfo(InfoType::PLAYER).Begin(); it != m_info.GetInfo(InfoType::PLAYER).End(); it++){
 		auto combo = m_info.GetInfo(InfoType::PLAYER).DynamicCast<CPlayer>(it)->GetCombo();
 		m_combo_num = combo;

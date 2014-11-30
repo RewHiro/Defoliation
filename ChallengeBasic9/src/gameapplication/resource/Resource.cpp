@@ -17,17 +17,21 @@ CResource::CResource()
 void CResource::RegistBG(){
 	m_bg.emplace(BG::TITLE, Texture("res/graph/title_graph.png"));
 	m_bg.emplace(BG::STAGE, Texture("res/graph/stage_graph.png"));
+	m_bg.emplace(BG::RULE, Texture("res/graph/rule.png"));
 }
 
 //Å@BGMÇÃí«â¡
 void CResource::RegistBGM(){
 	m_bgm.emplace(BGM::TITLE, std::make_shared<Media>("res/sound/title_bg.wav"));
 	m_bgm.emplace(BGM::STAGE, std::make_shared<Media>("res/sound/stage_bg.wav"));
+	m_bgm.emplace(BGM::RESULT, std::make_shared<Media>("res/sound/music2.wav"));
+	m_bgm.emplace(BGM::RANKING, std::make_shared<Media>("res/sound/ranking.wav"));
 }
 
 void CResource::RegistSE(){
 	m_se.emplace(SE::BUTTON01, std::make_shared<Media>("res/sound/title_button01.wav"));
 	m_se.emplace(SE::BUTTON02, std::make_shared<Media>("res/sound/title_button02.wav"));
+	m_se.emplace(SE::BUTTON03, std::make_shared<Media>("res/sound/button82.wav"));
 	m_se.emplace(SE::STAGE_FINISH, std::make_shared<Media>("res/sound/finish.wav"));
 	m_se.emplace(SE::STAGE_START, std::make_shared<Media>("res/sound/start.wav"));
 	m_se.emplace(SE::HIT01, std::make_shared<Media>("res/sound/hit01.wav"));

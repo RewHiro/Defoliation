@@ -16,5 +16,6 @@ CScene::Type CRule::Update(){
 }
 
 void CRule::Draw(){
-
+	drawTextureBox(-CScene::WIDTH / 2, -CScene::HEIGHT / 2, CScene::WIDTH, CScene::HEIGHT,
+		0, 0, 1024, 512, m_res.GetBG(BG::RULE), Color(1, 1, 1));
 }

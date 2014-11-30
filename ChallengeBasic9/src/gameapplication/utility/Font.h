@@ -26,6 +26,8 @@ public:
 
 	void DrawCenter(std::string str, int pos_x, int pos_y, Color& color, int div = 2);
 
+	void DrawCenter(int pos_x, int pos_y, Color& color, std::string& str,int div = 2);
+
 	//　関数オブジェクト
 	Font &operator()(std::wstring str){
 		m_str = str;
@@ -34,13 +36,13 @@ public:
 	}
 
 	//　1文字のサイズを取得
-	float GetSize(){ return m_font->LineHeight(); }
+	float GetSize(){ return m_font.lock()->LineHeight(); }
 
 	//　フォントのサイズを変換
-	void TransformOfSize(unsigned int font_size){ m_font->FaceSize(font_size); }
+	void TransformOfSize(unsigned int font_size){ m_font.lock()->FaceSize(font_size); }
 
 private:
 	FontList m_font_list;
-	std::shared_ptr<FTPixmapFont> m_font;
+	std::weak_ptr<FTPixmapFont> m_font;
 	std::wstring m_str;
 };

@@ -95,8 +95,10 @@
     <ClCompile Include="src\gameapplication\object\manager\EnemyManager.cpp" />
     <ClCompile Include="src\gameapplication\object\manager\ImplantManager.cpp" />
     <ClCompile Include="src\gameapplication\object\manager\ObstacleManager.cpp" />
+    <ClCompile Include="src\gameapplication\object\manager\ScoreManager.cpp" />
     <ClCompile Include="src\gameapplication\object\obstacle\leaf\Leaf.cpp" />
     <ClCompile Include="src\gameapplication\object\obstacle\Obstacle.cpp" />
+    <ClCompile Include="src\gameapplication\object\score\Score.cpp" />
     <ClCompile Include="src\gameapplication\resource\Resource.cpp" />
     <ClCompile Include="src\gameapplication\scene\ranking\Ranking.cpp" />
     <ClCompile Include="src\gameapplication\scene\result\Result.cpp" />
@@ -138,6 +140,7 @@
     <ClInclude Include="src\gameapplication\object\factory\ImplantFactory.h" />
     <ClInclude Include="src\gameapplication\object\factory\ObstacleFactory.h" />
     <ClInclude Include="src\gameapplication\object\factory\PlayerFactory.h" />
+    <ClInclude Include="src\gameapplication\object\factory\ScoreFactory.h" />
     <ClInclude Include="src\gameapplication\object\implant\holyghost\HolyGhost.h" />
     <ClInclude Include="src\gameapplication\object\implant\Implant.h" />
     <ClInclude Include="src\gameapplication\object\implant\sweetpotato\SweetoPotato.h" />
@@ -148,10 +151,12 @@
     <ClInclude Include="src\gameapplication\object\manager\ObjectManager.h" />
     <ClInclude Include="src\gameapplication\object\manager\ObstacleManager.h" />
     <ClInclude Include="src\gameapplication\object\manager\PlayerManager.h" />
+    <ClInclude Include="src\gameapplication\object\manager\ScoreManager.h" />
     <ClInclude Include="src\gameapplication\object\Object.h" />
     <ClInclude Include="src\gameapplication\object\obstacle\leaf\Leaf.h" />
     <ClInclude Include="src\gameapplication\object\obstacle\Obstacle.h" />
     <ClInclude Include="src\gameapplication\object\regist\ObjectRegist.h" />
+    <ClInclude Include="src\gameapplication\object\score\Score.h" />
     <ClInclude Include="src\gameapplication\object\Transform.h" />
     <ClInclude Include="src\gameapplication\resource\Resource.h" />
     <ClInclude Include="src\gameapplication\scene\ranking\Ranking.h" />

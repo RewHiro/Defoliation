@@ -59,6 +59,10 @@ public:
 		return itr->second->isActive();
 	}
 
+	void Death(const ObjMapIt itr){
+		itr->second->Death();
+	}
+
 	//　ダウンキャスト
 	template <class Type>
 	std::shared_ptr<Type> DynamicCast(const ObjMapIt itr)const{

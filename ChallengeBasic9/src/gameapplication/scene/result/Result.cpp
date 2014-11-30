@@ -15,6 +15,7 @@ CScene(app_env)
 	numbers_info[8] = std::make_shared<number>(8, Vec2f(0, 0), Vec2f(32, 64), Vec2f(198, 32), Vec2f(23, 32));
 	numbers_info[9] = std::make_shared<number>(9, Vec2f(0, 0), Vec2f(32, 64), Vec2f(220, 32), Vec2f(25, 32));
 	m_change_scene = Type::RESULT;
+	
 
 	def_score11 = 0;
 	def_score22 = 0;
@@ -36,6 +37,12 @@ CScene(app_env)
 	def_score5 = 1000 * def_score55;
 	def_score6 = 500 * def_score66;
 	def_score7 = 250 * def_score77;
+	m_res.GetBGM(BGM::RESULT)->looping(true);
+	m_res.GetBGM(BGM::RESULT)->play();
+
+	for (auto& font : m_str){
+		font = std::make_unique<Font>(30);
+	}
 }
 
 //　更新
@@ -314,7 +321,9 @@ void CResult::Draw(){
 	}
 	//リザルトスコア合計元
 	score8 = def_score1 + def_score2 + def_score3 - def_score4 + def_score5 - def_score6 + def_score7;
-
+	if (score8 < 0){
+		score8 = 0;
+	}
 	int one_points8 = score8 / 1 % 10;
 	int ten_points8 = score8 / 10 % 10;
 	int hundred_points8 = score8 / 100 % 10;
@@ -520,16 +529,137 @@ void CResult::Draw(){
 	//drawTextureBox(-100, 200, 50, 50,
 	//	15, 0, 58, 120,
 	//	number, Color(1, 1, 1));
-
+	RegistNameDraw();
 }
 
 //　操作
 void CResult::Control(){
 	if (m_app_env->isPushKey(GLFW_KEY_ENTER)){
-		m_change_scene = Type::RANKING;
-		std::ofstream save("res/now_score.txt");
-		if (save){
-			save << score8;
+		m_regist_name = true;
+		if (name.length() == 3){
+			m_change_scene = Type::RANKING;
+			std::ofstream save("res/now_score.txt");
+			if (save){
+				save << score8;
+			}
+			std::ofstream save01("res/your_name.txt");
+			if (save01){
+				save01 << name;
+			}
+			m_res.GetSE(SE::BUTTON03)->play();
+			m_res.GetBGM(BGM::RESULT)->stop();
 		}
+	}
+	RegistName();
+	DotName();
+	RemoveName();
+}
+
+void CResult::RegistName(){
+	if (!m_regist_name)return;
+	if (name.length() > 2)return;
+
+	if (m_app_env->isPushKey('A')){
+		name.push_back('A');
+	}
+	else if (m_app_env->isPushKey('B')){
+		name.push_back('B');
+	}
+	else if (m_app_env->isPushKey('C')){
+		name.push_back('C');
+	}
+	else if (m_app_env->isPushKey('D')){
+		name.push_back('D');
+	}
+	else if (m_app_env->isPushKey('E')){
+		name.push_back('E');
+	}
+	else if (m_app_env->isPushKey('F')){
+		name.push_back('F');
+	}
+	else if (m_app_env->isPushKey('G')){
+		name.push_back('G');
+	}
+	else if (m_app_env->isPushKey('H')){
+		name.push_back('H');
+	}
+	else if (m_app_env->isPushKey('I')){
+		name.push_back('I');
+	}
+	else if (m_app_env->isPushKey('J')){
+		name.push_back('J');
+	}
+	else if (m_app_env->isPushKey('K')){
+		name.push_back('K');
+	}
+	else if (m_app_env->isPushKey('L')){
+		name.push_back('L');
+	}
+	else if (m_app_env->isPushKey('M')){
+		name.push_back('M');
+	}
+	else if (m_app_env->isPushKey('N')){
+		name.push_back('N');
+	}
+	else if (m_app_env->isPushKey('O')){
+		name.push_back('O');
+	}
+	else if (m_app_env->isPushKey('P')){
+		name.push_back('P');
+	}
+	else if (m_app_env->isPushKey('Q')){
+		name.push_back('Q');
+	}
+	else if (m_app_env->isPushKey('R')){
+		name.push_back('R');
+	}
+	else if (m_app_env->isPushKey('S')){
+		name.push_back('S');
+	}
+	else if (m_app_env->isPushKey('T')){
+		name.push_back('T');
+	}
+	else if (m_app_env->isPushKey('U')){
+		name.push_back('U');
+	}
+	else if (m_app_env->isPushKey('V')){
+		name.push_back('V');
+	}
+	else if (m_app_env->isPushKey('W')){
+		name.push_back('W');
+	}
+	else if (m_app_env->isPushKey('X')){
+		name.push_back('X');
+	}
+	else if (m_app_env->isPushKey('Z')){
+		name.push_back('Z');
+	}
+}
+
+void CResult::RegistNameDraw(){
+	if (!m_regist_name)return;
+	drawFillBox(0, 0, 512, 256, color256(204, 204, 204),0,Vec2f(1,1),Vec2f(256,128));
+	drawFillCircle(0, 64+32, 256, 32, 20,color256(102, 255, 204));
+	m_str[0]->DrawCenter(L"イニシャルを入力してね",0, 64 + 32, Color(1, 1, 1));
+	drawFillBox(0, 0, 400, 64, color256(255, 255, 255), 0, Vec2f(1, 1), Vec2f(200, 32));
+	m_str[0]->DrawCenter(name,0, 0, Color(0, 0, 0),4);
+	Color color = (name.length() == 3 ? color256(51, 153, 255) : color256(153, 153, 153));
+	drawFillCircle(0, -64 - 16, 64, 32, 20, color);
+	m_str[0]->DrawCenter(L"ENTER", 16, -64-16, Color(1, 1, 1),3);
+
+}
+
+void CResult::RemoveName(){
+	if (!m_regist_name)return;
+	if (name.length() < 1)return;
+	if (m_app_env->isPushKey(GLFW_KEY_BACKSPACE)){
+		name.pop_back();
+		name.pop_back();
+	}
+}
+
+void CResult::DotName(){
+	if (name.length() == 1){
+		name.push_back('.');
 	}
 }

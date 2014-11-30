@@ -11,7 +11,9 @@ public:
 	//Å@ï`âÊ
 	void Draw();
 
-	bool GetisSwipe(){ return m_isswipe; }
+	bool GetisSwipe(){ return m_hit_swipe; }
+	bool GetisTap(){ return m_hit_tap; }
+	bool GetisScore(){ return m_is_score; }
 
 private:
 	int touch;
@@ -25,7 +27,7 @@ private:
 	bool m_hit_tap = false;
 	bool m_hit_swipe = false;
 	bool m_is_hit = false;
-
+	bool m_is_score = false;
 	const int ADD_SCORE;
 	const int DIFF_SCORE;
 

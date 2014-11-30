@@ -42,6 +42,7 @@ private:
 	bool isRemove;											//　削除するかどうか
 	bool isReady;											//　準備中か
 	bool isFinish;											//　終了したか
+	bool isDescription = true;
 	int m_count;											//　フレームカウント
 	int m_ready_count;										//　レディーのカウント
 	int m_hi_combo_num;
@@ -64,6 +65,8 @@ private:
 	std::unique_ptr<Font>m_combo_num_graph;					//　コンボ数の表示
 	std::unique_ptr<Font>m_ready_graph;						//　レディーの表示
 	std::unique_ptr<Font>m_finish_graph;					//　フィニッシュの表示
+	std::unique_ptr<Font>m_font_des;					//　フィニッシュの表示
+
 
 	//　操作
 	void Control();

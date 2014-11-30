@@ -35,6 +35,8 @@ public:
 	//　アクティブか取得
 	bool isActive()const{ return m_is_active; }
 
+	void Death(){ m_is_delete = true; }
+
 protected:
 	CTransform m_model;										//　モデルの状態
 	CTransform m_hit_model;									//　当たり判定用

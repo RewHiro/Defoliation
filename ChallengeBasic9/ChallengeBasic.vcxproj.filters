@@ -82,6 +82,9 @@
     <Filter Include="gameapplication\object\obstacle\leaf">
       <UniqueIdentifier>{7d5fabe2-aa38-4235-8bb3-ce9d567523a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="gameapplication\object\score">
+      <UniqueIdentifier>{df36bcce-f97c-478d-9b80-a417c71596ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
@@ -209,6 +212,12 @@
       <Filter>gameapplication\object\obstacle\leaf</Filter>
     </ClCompile>
     <ClCompile Include="src\gameapplication\object\manager\ObstacleManager.cpp">
+      <Filter>gameapplication\object\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameapplication\object\score\Score.cpp">
+      <Filter>gameapplication\object\score</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameapplication\object\manager\ScoreManager.cpp">
       <Filter>gameapplication\object\manager</Filter>
     </ClCompile>
   </ItemGroup>
@@ -392,6 +401,15 @@
     </ClInclude>
     <ClInclude Include="src\gameapplication\scene\stage\Stage.h">
       <Filter>gameapplication\scene\stage</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameapplication\object\score\Score.h">
+      <Filter>gameapplication\object\score</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameapplication\object\manager\ScoreManager.h">
+      <Filter>gameapplication\object\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameapplication\object\factory\ScoreFactory.h">
+      <Filter>gameapplication\object\factory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

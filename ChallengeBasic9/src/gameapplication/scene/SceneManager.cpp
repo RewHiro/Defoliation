@@ -6,7 +6,7 @@
 CSceneManager::CSceneManager(std::shared_ptr<AppEnv>app_env) :
 m_factory(std::make_unique<CSceneFactory>(app_env)),
 m_scene(nullptr),
-m_now_scene(CScene::Type::STAGE),
+m_now_scene(CScene::Type::TITLE),
 m_app_env(app_env),
 m_alpha(255)
 {

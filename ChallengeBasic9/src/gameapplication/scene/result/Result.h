@@ -1,5 +1,6 @@
 #pragma once
 #include "../Scene.h"
+#include "../../utility/Font.h"
 
 class CResult :	public CScene{
 public:
@@ -56,7 +57,23 @@ private:
 	int def_score66;
 	int def_score77;
 
+	bool m_regist_name = false;
+
 	//　操作
 	void Control();
+
+	//　ネーム登録
+	void RegistNameDraw();
+
+	//　ネーム登録
+	void RegistName();
+
+	void RemoveName();
+
+	void DotName();
+
+	std::array<std::unique_ptr<Font>, 2>m_str;
+
+	std::string name;
 };
 

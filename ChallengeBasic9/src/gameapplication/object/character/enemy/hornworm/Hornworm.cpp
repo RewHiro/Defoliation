@@ -50,7 +50,7 @@ void CHornworm::Draw(){
 		push_count += 1;
 		drawTextureBox(m_model.GetPosX(), m_model.GetPosY(), m_model.GetScaleX(), m_model.GetScaleY(), 0, 0, m_model.GetScaleX(), m_model.GetScaleY(), m_res.GetEnemy(ENEMY_GRAPH::HORNWORN_DEATH), Color(1, 1, 1), 0, Vec2f(1, 1), Vec2f(m_model.GetScaleX() / 2, m_model.GetScaleY() / 2));
 		if (push_count == 40){
-			m_is_delete = true;
+			m_is_active = false;
 			//m_is_active = false;
 		}
 	}
@@ -61,6 +61,7 @@ void CHornworm::Draw(){
 				auto score = m_info.GetInfo(InfoType::PLAYER).DynamicCast<CPlayer>(it)->GetScore();
 				m_info.GetInfo(InfoType::PLAYER).DynamicCast<CPlayer>(it)->TransformOfScore(ADD_SCORE + score);
 				m_is_hit = true;
+
 				m_info.GetInfo(InfoType::PLAYER).DynamicCast<CPlayer>(it)->TransoformCombo(1);
 			}
 		}
@@ -71,6 +72,7 @@ void CHornworm::Draw(){
 				if (DIFF_SCORE + score < 0){
 					m_info.GetInfo(InfoType::PLAYER).DynamicCast<CPlayer>(it)->TransformOfScore(0);
 					m_is_hit = true;
+
 					m_info.GetInfo(InfoType::PLAYER).DynamicCast<CPlayer>(it)->ComboClear();
 					m_info.GetInfo(InfoType::PLAYER).DynamicCast<CPlayer>(it)->ControlFalse();
 				}
@@ -90,8 +92,7 @@ void CHornworm::Draw(){
 			m_model.Translate(m_random.Uniform(-5, 5), m_random.Uniform(-5, 5));
 		}
 		if (press_count == 60){
-			m_is_delete = true;
-			//m_pos.x() = CRandom::Uniform(-CScene::WIDTH / 2, CScene::WIDTH / 2 - 128);
+			m_is_active = false;			//m_pos.x() = CRandom::Uniform(-CScene::WIDTH / 2, CScene::WIDTH / 2 - 128);
 			//m_pos.y() = CRandom::Uniform(-CScene::HEIGHT / 2, CScene::HEIGHT / 2 - 128);
 			//press_count = 0;
 			//flag = 0;
@@ -125,6 +126,7 @@ void CHornworm::hit(){
 			if (Collision::CircleAndPoint(m_model.GetPos(), m_hit_model.GetScaleX(), player_pos)){
 				m_hit_swipe = true;
 				CStage::m_enemy_swipe_count++;
+				m_info.GetInfo(InfoType::PLAYER).DynamicCast<CPlayer>(it)->ControlFalse();
 			}
 		}
 	}
@@ -134,7 +136,7 @@ void CHornworm::hit(){
 
 void CHornworm::Remove(){
 	if (m_is_active)return;
-	m_is_delete = true;
+	m_is_score = true;
 }
 
 void CHornworm::Acctive(){

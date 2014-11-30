@@ -1,5 +1,7 @@
 #pragma once
 #include "../Scene.h"
+#include "../../utility/Font.h"
+#include <string>
 
 // ランキング数をenumで定義
 enum { RANKING_NUM = 4 };
@@ -53,6 +55,7 @@ private:
 
 	//　操作
 	void Control();
-
+	std::array<std::unique_ptr<Font>, 4>m_name;
+	std::array < std::string, 4 >m_str_name;
 };
 

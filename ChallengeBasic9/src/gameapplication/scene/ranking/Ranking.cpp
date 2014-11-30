@@ -2,6 +2,7 @@
 #include "../../../lib/utils.hpp"
 #include <fstream>
 
+const int NAME_POS_X = 250;
 
 CRanking::CRanking(std::shared_ptr<AppEnv>app_env) :
 CScene(app_env)
@@ -34,12 +35,27 @@ CScene(app_env)
 	def_score4 = score[3];
 	m_change_scene = Type::RANKING;
 
+	std::ifstream your_name("res/your_name.txt");
+	if (your_name){
+		your_name >> m_str_name[3];
+	}
+
+	std::ifstream ranking_name("res/ranking_name.txt");
+	if (ranking_name){
+		for (int i = 0; i < 3; i++){
+			ranking_name >> m_str_name[i];
+		}
+	}
+
+
+
 	while (1) {
 		bool swaped = false;
 
 		for (int i = 0; i < (elemsof(score) - 1); ++i) {
 			if (score[i] < score[i + 1]) {
 				std::swap(score[i], score[i + 1]);
+				std::swap(m_str_name[i], m_str_name[i + 1]);
 				swaped = true;
 			}
 		}
@@ -49,7 +65,19 @@ CScene(app_env)
 	def_score1 = score[0];
 	def_score2 = score[1];
 	def_score3 = score[2];
+	m_res.GetBGM(BGM::RANKING)->looping(true);
+	m_res.GetBGM(BGM::RANKING)->play();
 
+
+	std::ifstream your("res/your_name.txt");
+	if (your){
+		your >> m_str_name[3];
+	}
+
+
+	for (auto& name : m_name){
+		name = std::make_unique<Font>(40);
+	}
 
 }
 
@@ -92,6 +120,9 @@ void CRanking::Draw(){
 			drawTextureBox(-150, 180, 32, 32, numbers_info[i].texture_pos.x(), numbers_info[i].texture_pos.y(), numbers_info[i].texture_size.x(), numbers_info[i].texture_size.y(), m_res.GetResult(RESULT_GRAPH::NUM), Color(1, 1, 1));
 		}
 	}
+
+	m_name[0]->Draw(m_str_name[0], NAME_POS_X, 180, Color(0, 0, 0));
+
 	//２位元スコア
 	int one_points2 = def_score2 / 1 % 10;
 	int ten_points2 = def_score2 / 10 % 10;
@@ -116,6 +147,9 @@ void CRanking::Draw(){
 			drawTextureBox(-150, 50, 32, 32, numbers_info[i].texture_pos.x(), numbers_info[i].texture_pos.y(), numbers_info[i].texture_size.x(), numbers_info[i].texture_size.y(), m_res.GetResult(RESULT_GRAPH::NUM), Color(1, 1, 1));
 		}
 	}
+
+	m_name[1]->Draw(m_str_name[1], NAME_POS_X, 50, Color(0, 0, 0));
+
 	//３位元スコア
 	int one_points3 = def_score3 / 1 % 10;
 	int ten_points3 = def_score3 / 10 % 10;
@@ -140,6 +174,9 @@ void CRanking::Draw(){
 			drawTextureBox(-150, -80, 32, 32, numbers_info[i].texture_pos.x(), numbers_info[i].texture_pos.y(), numbers_info[i].texture_size.x(), numbers_info[i].texture_size.y(), m_res.GetResult(RESULT_GRAPH::NUM), Color(1, 1, 1));
 		}
 	}
+
+	m_name[2]->Draw(m_str_name[2], NAME_POS_X, -80, Color(0, 0, 0));
+
 	//貴方の元スコア
 	int one_points4 = def_score4 / 1 % 10;
 	int ten_points4 = def_score4 / 10 % 10;
@@ -164,6 +201,9 @@ void CRanking::Draw(){
 			drawTextureBox(-150, -210, 32, 32, numbers_info[i].texture_pos.x(), numbers_info[i].texture_pos.y(), numbers_info[i].texture_size.x(), numbers_info[i].texture_size.y(), m_res.GetResult(RESULT_GRAPH::NUM), Color(1, 1, 1));
 		}
 	}
+
+	m_name[3]->Draw(m_str_name[3], NAME_POS_X, -210, Color(0, 0, 0));
+
 	//１位
 	drawTextureBox(-400, 160, 128, 64, 0, 0, 128, 64,
 		m_res.GetRanking(RANKING_GRAPH::FIRST),
@@ -198,5 +238,6 @@ void CRanking::Control(){
 				<< score[1] << std::endl
 				<< score[2];
 		}
+		m_res.GetBGM(BGM::RANKING)->stop();
 	}
 }

@@ -12,6 +12,10 @@ public:
 
 	void Draw();
 
+	bool GetisSwipe(){ return m_hit_swipe; }
+	bool GetisTap(){ return m_hit_tap; }
+
+
 private:
 	const int ADD_SCORE;
 	const int DIFF_SCORE;

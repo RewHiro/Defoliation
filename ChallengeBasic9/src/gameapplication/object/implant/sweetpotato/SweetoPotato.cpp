@@ -85,7 +85,7 @@ void CSweetoPotato::UpdateOfSwaipe(){
 //Å@çÌèú
 void CSweetoPotato::Remove(){
 	if (m_is_active)return;
-	m_is_delete = true;
+	m_is_score = true;
 }
 
 void CSweetoPotato::HolyGhostDraw(){

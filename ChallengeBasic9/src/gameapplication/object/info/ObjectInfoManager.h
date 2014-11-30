@@ -13,7 +13,8 @@ public:
 		PLAYER,
 		ENMEY,
 		IMPLANT,
-		OBSTACLE
+		OBSTACLE,
+		SCORE
 	};
 
 

@@ -20,16 +20,20 @@ public:
 	enum class BG{
 		TITLE,
 		STAGE,
+		RULE
 	};
 
 	enum class BGM{
 		TITLE,
-		STAGE
+		STAGE,
+		RESULT,
+		RANKING
 	};
 
 	enum class SE{
 		BUTTON01,
 		BUTTON02,
+		BUTTON03,
 		STAGE_FINISH,
 		STAGE_START,
 		HIT01,

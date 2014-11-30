@@ -82,7 +82,8 @@ void CHolyGhost::UpdateOfSwaipe(){
 //Å@çÌèú
 void CHolyGhost::Remove(){
 	if (m_is_active)return;
-	m_is_delete = true;
+	m_is_score = true;
+
 }
 
 void CHolyGhost::HolyGhostDraw(){
